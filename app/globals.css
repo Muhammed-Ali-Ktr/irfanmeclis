@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --background: #061A33;
+  --foreground: #f8fafc;
+  --font-serif: var(--font-serif), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-sans), 'Inter', system-ui, sans-serif;
+  --navy-dark: #030D1A;
+  --navy-primary: #061A33;
+  --navy-card: #092746;
+  --navy-surface: #0D3156;
+  --navy-hover: #123D69;
+  --blue-accent: #4DA3FF;
+  --blue-light: #65B5FF;
+  --blue-btn: #258BF5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #061A33;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #061A33;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0D3156;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4DA3FF;
+}
+
+/* Executive navy glassmorphism & cards */
+.glass-navy {
+  background: rgba(9, 39, 70, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(77, 163, 255, 0.16);
+}
+
+.glass-navy-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-navy-hover:hover {
+  background: rgba(13, 49, 86, 0.92);
+  border-color: rgba(77, 163, 255, 0.4);
+  box-shadow: 0 12px 36px -10px rgba(6, 26, 51, 0.8), 0 0 20px -5px rgba(77, 163, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.glow-accent {
+  box-shadow: 0 0 30px -5px rgba(77, 163, 255, 0.35);
+}
+
+.glow-btn {
+  box-shadow: 0 8px 24px -4px rgba(37, 139, 245, 0.45);
+}
+
+/* Smooth Infinite Marquee Animation (Right to Left) */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Print utility for QR tickets */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #printable-ticket,
+  #printable-ticket *,
+  #printable-program,
+  #printable-program * {
+    visibility: visible;
+  }
+
+  #printable-ticket,
+  #printable-program {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    background: white !important;
+    color: black !important;
+  }
+}
